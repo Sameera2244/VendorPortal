@@ -7,6 +7,7 @@
 .infoContainer {
   flex: 1;
   background-color: var(--bgSoft);
+  background-image: linear-gradient(135deg,#8a8b73, #85e6e0);
   padding: 20px;
   border-radius: 10px;
   font-weight: bold;

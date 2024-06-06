@@ -22,9 +22,12 @@ const MeterreadersPage = async ({ searchParams }) => {
       <table className={styles.table}>
         <thead>
           <tr>
-            <td>Name</td>
-            <td>Id NO</td>
-            <td>Action</td>
+            <td>Meter Reading Unit</td>
+            <td>Business Partner</td>
+            <td>Contract</td>
+            <td>Installation</td>
+            <td>Device</td>
+            <td>MDE Number</td>
           </tr>
         </thead>
         <tbody>
@@ -39,11 +42,14 @@ const MeterreadersPage = async ({ searchParams }) => {
                     height={40}
                     className={styles.vendorImage}
                   />
-                  {meterreader.Name}
+                  {meterreader.MeterReadingUnit}
                 </div>
               </td>
-              <td>{meterreader.IdNO}</td>
-
+              <td>{meterreader.BusinessPartner}</td>
+              <td>{meterreader.Contract}</td>
+              <td>{meterreader.Installation}</td>
+              <td>{meterreader.Device}</td>
+              <td>{meterreader.MDENumber}</td>
               <td>
                 <div className={styles.buttons}>
                   <Link href={`/dashboard/meterreader/${meterreader.id}`}>

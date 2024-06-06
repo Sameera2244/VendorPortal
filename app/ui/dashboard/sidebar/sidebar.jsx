@@ -38,11 +38,11 @@ const menuItems = [
         path: "/dashboard/meterreaderedit",
         icon: <MdShoppingBag />,
       },
-      {
-        title: "Allocation",
-        path: "/dashboard/allocation",
-        icon: <MdShoppingBag />,
-      },
+      // {
+      //   title: "Allocation",
+      //   path: "/dashboard/allocation",
+      //   icon: <MdShoppingBag />,
+      // },
    
     ],
   },

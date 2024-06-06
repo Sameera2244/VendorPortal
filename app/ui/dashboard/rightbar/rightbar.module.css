@@ -3,7 +3,8 @@
 }
 
 .item {
-  background: linear-gradient(to top, #182237, #253352);
+ 
+  background-image: linear-gradient(135deg,#8a8b73, #85e6e0);
   padding: 20px 24px;
   border-radius: 10px;
   margin-bottom: 20px;

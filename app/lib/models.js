@@ -41,12 +41,32 @@ const userSchema = new mongoose.Schema(
 
 const meterreaderSchema = new mongoose.Schema(
   {
-    Name: {
+    MeterReadingUnit: {
       type: String,
       required: true,
       unique: true,
     },
-    IdNO: {
+    BusinessPartner: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    Contract: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    Installation: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    Device: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    MDENumber: {
       type: Number,
       required: true,
       min: 0,

@@ -18,10 +18,18 @@ const SinglemeterreaderPage = async ({ params }) => {
       <div className={styles.formContainer}>
         <form action={updatemeterreader} className={styles.form}>
           <input type="hidden" name="id" value={meterreader.id} />
-          <label>Name</label>
-          <input type="text" name="Name" placeholder={meterreader.Name} />
-          <label>Id NO</label>
-          <input type="number" name="IdNo" placeholder={meterreader.IdNO} />
+          <label>Meter Reading Unit </label>
+          <input type="text" name="MeterReadingUnit" placeholder={meterreader.MeterReadingUnit} />
+          <label>Business Partner </label>
+          <input type="text" name="BusinessPartner" placeholder={meterreader.BusinessPartner} />
+          <label>Contract </label>
+          <input type="text" name="Contract" placeholder={meterreader.Contract} />
+          <label>Installation</label>
+          <input type="text" name="Installation " placeholder={meterreader.Installation} /> 
+          <label>Device</label>
+          <input type="text" name="Device" placeholder={meterreader.Device} />
+          <label>MDE Number</label>
+          <input type="number" name="MDENumber" placeholder={meterreader.MDENumber} />
          
           <button>Update</button>
         </form>

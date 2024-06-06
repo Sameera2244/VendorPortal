@@ -70,15 +70,19 @@ export const updateUser = async (formData) => {
 };
 
 export const addmeterreader = async (formData) => {
-  const {  Name,IdNO } =
+  const { MeterReadingUnit,BusinessPartner,Contract,Installation,Device,MDENumber } =
     Object.fromEntries(formData);
 
   try {
     connectToDB();
 
     const newmeterreader = new meterreader({
-      Name,
-      IdNO,
+      MeterReadingUnit,
+      BusinessPartner,
+      Contract,
+      Installation,
+      Device,
+      MDENumber, 
     });
 
     await newmeterreader.save();
@@ -92,15 +96,19 @@ export const addmeterreader = async (formData) => {
 };
 
 export const updatemeterreader = async (formData) => {
-  const { id,Name,IdNO } =
+  const { id,MeterReadingUnit,BusinessPartner,Contract,Installation,Device,MDENumber } =
     Object.fromEntries(formData);
 
   try {
     connectToDB();
 
     const updateFields = {
-     Name,
-     IdNO,
+      MeterReadingUnit,
+      BusinessPartner,
+      Contract,
+      Installation,
+      Device,
+      MDENumber, 
     };
 
     Object.keys(updateFields).forEach(

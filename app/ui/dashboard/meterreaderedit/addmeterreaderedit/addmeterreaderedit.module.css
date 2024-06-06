@@ -6,7 +6,8 @@
     padding: 20px;
     border: 4px solid #635858;
     border-radius: 5px;
-    background-color: rgb(29 , 40, 88); /* Change background to black */
+    background-color: rgb(29 , 40, 88); 
+    background-image: linear-gradient(135deg,#8a8b73, #85e6e0);/* Change background to black */
     color: rgb(247, 243, 243); /* Change text color to white */
   }
   
@@ -33,7 +34,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    background-color: #242133; /* Darker background for inputs */
+    background-color:white; /* Darker background for inputs */
     
     font-weight: 600    ;
     color: white; /* White text color for inputs */

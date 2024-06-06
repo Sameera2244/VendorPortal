@@ -2,7 +2,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: rgb(58, 58, 146);;
+  background-color: white;
+  
   padding: 10px;
   border-radius: 10px;
   width: max-content;
@@ -11,6 +12,6 @@
 .input {
   background-color: transparent;
   border: none;
-  color: var(--text);
+  color: black;
   outline: none;
 }

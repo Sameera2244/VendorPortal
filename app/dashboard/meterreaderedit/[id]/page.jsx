@@ -1,6 +1,6 @@
 import { updatemeterreaderedit } from "@/app/lib/actions";
 import { fetchMeterreaderedits } from "@/app/lib/data";
-import styles from "@/app/ui/dashboard/meterreaderedit/singlemeterreaderedit/singlemeterreaderedit.module.css";
+import styles from "@/app/ui/dashboard/meterreaderedit/singlemeterreaderedit";
 import Image from "next/image";
 
 const SinglemeterreadereditPage = async ({ params }) => {

@@ -9,7 +9,7 @@ const Transactions = () => {
         <thead>
           <tr>
             <td>Name</td>
-            <td>Status</td>
+            <td>Order </td>
             <td>Date</td>
             <td>Amount</td>
           </tr>
@@ -25,7 +25,7 @@ const Transactions = () => {
                   height={40}
                   className={styles.userImage}
                 />
-               sameera
+               Man Power Ltd
               </div>
             </td>
             <td>
@@ -34,7 +34,7 @@ const Transactions = () => {
               </span>
             </td>
             <td>14.02.2024</td>
-            <td>$3.200</td>
+            <td>$6.200</td>
           </tr>
           <tr>
             <td>
@@ -46,7 +46,7 @@ const Transactions = () => {
                   height={40}
                   className={styles.userImage}
                 />
-                 sameera
+                 Real Madrid Corp
               </div>
             </td>
             <td>
@@ -65,7 +65,7 @@ const Transactions = () => {
                   height={40}
                   className={styles.userImage}
                 />
-                sameera
+                Bosnia Corp
               </div>
             </td>
             <td>
@@ -74,7 +74,7 @@ const Transactions = () => {
               </span>
             </td>
             <td>14.02.2024</td>
-            <td>$3.200</td>
+            <td>$2.200</td>
           </tr>
           <tr>
             <td>
@@ -86,7 +86,7 @@ const Transactions = () => {
                   height={40}
                   className={styles.userImage}
                 />
-                 sameera
+                 African League Pvt.
               </div>
             </td>
             <td>
@@ -95,7 +95,7 @@ const Transactions = () => {
               </span>
             </td>
             <td>14.02.2024</td>
-            <td>$3.200</td>
+            <td>$4.200</td>
           </tr>
         </tbody>
       </table>
