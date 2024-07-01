@@ -10,25 +10,18 @@ const AddmeterreaderPage = () => {
         <input type="text" placeholder="Meter Reading Unit" name="MeterReadingUnit" required />
        </div>
        <div className={styles.formGroup}>
-          <label htmlFor="BusinessPartner">Business Partner:</label>
-        <input type="text" placeholder="Business Partner" name="BusinessPartner" required />
+          <label htmlFor="FirstName">First Name:</label>
+        <input type="text" placeholder="First Name" name="FirstName" required />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="Contract">Contract:</label>
-        <input type="text" placeholder="Contract" name="Contract" required />
+          <label htmlFor="LastName">LastName:</label>
+        <input type="text" placeholder="LastName" name="LastName" required />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="Installation">Installation:</label>
-        <input type="text" placeholder="Installation" name="Installation" required />
+          <label htmlFor="MREfficency">Installation:</label>
+        <input type="text" placeholder="MREfficency" name="MREfficency" required />
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="Device">Device:</label>
-        <input type="text" placeholder="Device" name="Device" required />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="MDENumber">MDE Number:</label>
-        <input type="number" placeholder="MDE Number" name="MDENumber" required />
-        </div>
+        
         <div className={styles.formGroup}>
         <button type="submit">Submit</button>
         </div>

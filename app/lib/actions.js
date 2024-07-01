@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { meterreader, User,meterreaderedit,allocation } from "./models";
+import { meterreader, User,meterreaderedit,allocation,Vendor } from "./models";
 import { connectToDB } from "./utils";
 import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";
@@ -70,7 +70,7 @@ export const updateUser = async (formData) => {
 };
 
 export const addmeterreader = async (formData) => {
-  const { MeterReadingUnit,BusinessPartner,Contract,Installation,Device,MDENumber } =
+  const { MeterReadingUnit,FirstName,LastName,MREfficency } =
     Object.fromEntries(formData);
 
   try {
@@ -78,11 +78,9 @@ export const addmeterreader = async (formData) => {
 
     const newmeterreader = new meterreader({
       MeterReadingUnit,
-      BusinessPartner,
-      Contract,
-      Installation,
-      Device,
-      MDENumber, 
+      FirstName,
+      LastName,
+      MREfficency,
     });
 
     await newmeterreader.save();
@@ -96,7 +94,7 @@ export const addmeterreader = async (formData) => {
 };
 
 export const updatemeterreader = async (formData) => {
-  const { id,MeterReadingUnit,BusinessPartner,Contract,Installation,Device,MDENumber } =
+  const { id,MeterReadingUnit,FirstName,LastName,MREfficency } =
     Object.fromEntries(formData);
 
   try {
@@ -104,11 +102,9 @@ export const updatemeterreader = async (formData) => {
 
     const updateFields = {
       MeterReadingUnit,
-      BusinessPartner,
-      Contract,
-      Installation,
-      Device,
-      MDENumber, 
+      FirstName,
+      LastName,
+      MREfficency,
     };
 
     Object.keys(updateFields).forEach(
@@ -226,6 +222,63 @@ export const updateallocation = async (formData) => {
   redirect("/dashboard/allocation");
 };
 
+export const addVendor = async (formData) => {
+  const { vendorsName,email,PurchaseOrders } =
+    Object.fromEntries(formData);
+
+  try {
+    connectToDB();
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const newVendor = new Vendor({
+      vendorsName,
+      email,
+      password: hashedPassword,
+      PurchaseOrders,
+    });
+
+    await newVendor.save();
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to create vendor!");
+  }
+
+  revalidatePath("/dashboard/vendor");
+  redirect("/dashboard/vendor");
+};
+
+export const updateVendor= async (formData) => {
+  const { id, vendorsName,email,PurchaseOrders } =
+    Object.fromEntries(formData);
+
+  try {
+    connectToDB();
+
+    const updateFields = {
+      vendorsName,
+      email,
+      password: hashedPassword,
+      PurchaseOrders,
+    };
+
+    Object.keys(updateFields).forEach(
+      (key) =>
+        (updateFields[key] === "" || undefined) && delete updateFields[key]
+    );
+
+    await Vendor.findByIdAndUpdate(id, updateFields);
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to update vendor!");
+  }
+
+  revalidatePath("/dashboard/vendor");
+  redirect("/dashboard/vendor");
+}
+
+
 export const deleteUser = async (formData) => {
   const { id } = Object.fromEntries(formData);
 
@@ -280,6 +333,21 @@ export const deleteallocation = async (formData) => {
 
   revalidatePath("/dashboard/allocation");
 };
+
+export const deleteVendor = async (formData) => {
+  const { id } = Object.fromEntries(formData);
+
+  try {
+    connectToDB();
+    await Vendor.findByIdAndDelete(id);
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to delete vendor!");
+  }
+
+  revalidatePath("/dashboard/vendor");
+};
+
 
 
 export const authenticate = async (_prevState, formData) => {

@@ -1,4 +1,4 @@
-import { meterreader, User,meterreaderedit,allocation } from "./models";
+import { meterreader, User,meterreaderedit,allocation,vendor } from "./models";
 import { connectToDB } from "./utils";
 
 export const fetchUsers = async (q, page) => {
@@ -119,26 +119,49 @@ export const fetchallocation = async (id) => {
     throw new Error("Failed to fetch allocation!");
   }
 };
+export const fetchVendors = async (q, page) => {
+  const regex = new RegExp(q, "i");
 
+  const ITEM_PER_PAGE = 2;
+
+  try {
+    connectToDB();
+    const count = await vendor.find({ vendorsName: { $regex: regex } }).count();
+    const vendors = await vendor.find({ vendorsName: { $regex: regex } })
+      .limit(ITEM_PER_PAGE)
+      .skip(ITEM_PER_PAGE * (page - 1));
+    return { count, vendors };
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch vendors!");
+  }
+};
+
+export const fetchVendor = async (id) => {
+  console.log(id);
+  try {
+    connectToDB();
+    const vendor = await vendor.findById(id);
+    return vendor;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch vendor!");
+  }
+};
 // DUMMY DATA
 
 export const cards = [
   {
     id: 1,
     title: "Total Users",
-    number: 10.928,
+    number: 7,
     change: 12,
   },
   {
     id: 2,
-    title: "Orders",
-    number: 8.236,
+    title: "Meter Reader",
+    number: 45,
     change: -2,
   },
-  {
-    id: 3,
-    title: "Revenue",
-    number: 6.642,
-    change: 18,
-  },
+
 ];

@@ -23,11 +23,10 @@ const MeterreadersPage = async ({ searchParams }) => {
         <thead>
           <tr>
             <td>Meter Reading Unit</td>
-            <td>Business Partner</td>
-            <td>Contract</td>
-            <td>Installation</td>
-            <td>Device</td>
-            <td>MDE Number</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>MR Efficency</td>
+            
           </tr>
         </thead>
         <tbody>
@@ -45,11 +44,10 @@ const MeterreadersPage = async ({ searchParams }) => {
                   {meterreader.MeterReadingUnit}
                 </div>
               </td>
-              <td>{meterreader.BusinessPartner}</td>
-              <td>{meterreader.Contract}</td>
-              <td>{meterreader.Installation}</td>
-              <td>{meterreader.Device}</td>
-              <td>{meterreader.MDENumber}</td>
+              <td>{meterreader.FirstName}</td>
+              <td>{meterreader.LastName}</td>
+              <td>{meterreader.MREfficency}</td>
+              
               <td>
                 <div className={styles.buttons}>
                   <Link href={`/dashboard/meterreader/${meterreader.id}`}>

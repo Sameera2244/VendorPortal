@@ -20,16 +20,13 @@ const SinglemeterreaderPage = async ({ params }) => {
           <input type="hidden" name="id" value={meterreader.id} />
           <label>Meter Reading Unit </label>
           <input type="text" name="MeterReadingUnit" placeholder={meterreader.MeterReadingUnit} />
-          <label>Business Partner </label>
-          <input type="text" name="BusinessPartner" placeholder={meterreader.BusinessPartner} />
-          <label>Contract </label>
-          <input type="text" name="Contract" placeholder={meterreader.Contract} />
-          <label>Installation</label>
-          <input type="text" name="Installation " placeholder={meterreader.Installation} /> 
-          <label>Device</label>
-          <input type="text" name="Device" placeholder={meterreader.Device} />
-          <label>MDE Number</label>
-          <input type="number" name="MDENumber" placeholder={meterreader.MDENumber} />
+          <label>First Name </label>
+          <input type="text" name="FirstName" placeholder={meterreader.FirstName} />
+          <label>Last Name </label>
+          <input type="text" name="LastName" placeholder={meterreader.LastName} />
+          <label>MR Efficency </label>
+          <input type="text" name="Installation " placeholder={meterreader.MREfficency} /> 
+         
          
           <button>Update</button>
         </form>

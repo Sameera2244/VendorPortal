@@ -46,31 +46,22 @@ const meterreaderSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    BusinessPartner: {
+    FirstName: {
       type: String,
       required: true,
       unique: true,
     },
-    Contract: {
+    LastName: {
       type: String,
       required: true,
       unique: true,
     },
-    Installation: {
+    MREfficency: {
       type: String,
       required: true,
       unique: true,
     },
-    Device: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    MDENumber: {
-      type: Number,
-      required: true,
-      min: 0,
-    },
+  
    
   },
   { timestamps: true }
@@ -118,7 +109,33 @@ const allocationSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+const vendorSchema = new mongoose.Schema(
+  {
+    vendorsName: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    PurchaseOrders: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+ 
+  },
+  { timestamps: true }
+);
 export const User = mongoose.models.User || mongoose.model("User", userSchema);
 export const meterreader = mongoose.models.meterreader || mongoose.model("meterreader", meterreaderSchema);
 export const meterreaderedit = mongoose.models.meterreaderedit || mongoose.model("meterreaderedit", meterreadereditSchema);
 export const allocation = mongoose.models.allocation || mongoose.model("allocation", allocationSchema);
+export const vendor = mongoose.models.vendor|| mongoose.model("vendor",vendorSchema);

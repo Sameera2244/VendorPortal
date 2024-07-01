@@ -23,11 +23,11 @@ const menuItems = [
         path: "/dashboard",
         icon: <MdDashboard />,
       },
-      {
-        title: "Users",
-        path: "/dashboard/vendoruser",
-        icon: <MdSupervisedUserCircle />,
-      },
+      //{
+        //title: "Users",
+        //path: "/dashboard/vendoruser",
+        //icon: <MdSupervisedUserCircle />,
+      //},
       {
         title: "Meter Reader",
         path: "/dashboard/meterreader",
@@ -43,7 +43,11 @@ const menuItems = [
       //   path: "/dashboard/allocation",
       //   icon: <MdShoppingBag />,
       // },
-   
+      {
+        title: "Vendor",
+        path: "/dashboard/vendor",
+        icon: <MdShoppingBag />,
+      }
     ],
   },
   {
