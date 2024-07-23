@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { meterreader, User,meterreaderedit,allocation,Vendor } from "./models";
+import { meterreader, User,meterreaderedit,allocation,vendor,taskmanager } from "./models";
 import { connectToDB } from "./utils";
 import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";
@@ -70,17 +70,21 @@ export const updateUser = async (formData) => {
 };
 
 export const addmeterreader = async (formData) => {
-  const { MeterReadingUnit,FirstName,LastName,MREfficency } =
+  const { PurchaseOrderNumber,MeterReadingUnit,TaskNumber,NumberOfMeters,MeterswithReads,MeterswithoutReads,Status,MRUUserAssigned } =
     Object.fromEntries(formData);
 
   try {
     connectToDB();
 
     const newmeterreader = new meterreader({
+      PurchaseOrderNumber,
       MeterReadingUnit,
-      FirstName,
-      LastName,
-      MREfficency,
+      TaskNumber,
+      NumberOfMeters,
+      MeterswithReads,
+      MeterswithoutReads,
+      Status,
+      MRUUserAssigned
     });
 
     await newmeterreader.save();
@@ -94,17 +98,21 @@ export const addmeterreader = async (formData) => {
 };
 
 export const updatemeterreader = async (formData) => {
-  const { id,MeterReadingUnit,FirstName,LastName,MREfficency } =
+  const { id,PurchaseOrderNumber,MeterReadingUnit,TaskNumber,NumberOfMeters,MeterswithReads,MeterswithoutReads,Status,MRUUserAssigned } =
     Object.fromEntries(formData);
 
   try {
     connectToDB();
 
     const updateFields = {
+      PurchaseOrderNumber,
       MeterReadingUnit,
-      FirstName,
-      LastName,
-      MREfficency,
+      TaskNumber,
+      NumberOfMeters,
+      MeterswithReads,
+      MeterswithoutReads,
+      Status,
+      MRUUserAssigned
     };
 
     Object.keys(updateFields).forEach(
@@ -122,7 +130,7 @@ export const updatemeterreader = async (formData) => {
   redirect("/dashboard/meterreader");
 };
 export const addmeterreaderedit = async (formData) => {
-  const {  Name,MeterReadingUnit,Date } =
+  const {  Name,MeterReadingUnit } =
     Object.fromEntries(formData);
 
   try {
@@ -131,7 +139,7 @@ export const addmeterreaderedit = async (formData) => {
     const newmeterreaderedit = new meterreaderedit({
       Name,
       MeterReadingUnit,
-      Date,
+ 
     });
 
     await newmeterreaderedit.save();
@@ -145,7 +153,7 @@ export const addmeterreaderedit = async (formData) => {
 };
 
 export const updatemeterreaderedit = async (formData) => {
-  const { id,Name,MeterReadingUnit,Date } =
+  const { id,Name,MeterReadingUnit } =
     Object.fromEntries(formData);
 
   try {
@@ -154,7 +162,6 @@ export const updatemeterreaderedit = async (formData) => {
     const updateFields = {
       Name,
       MeterReadingUnit,
-      Date,
     };
 
     Object.keys(updateFields).forEach(
@@ -172,7 +179,7 @@ export const updatemeterreaderedit = async (formData) => {
   redirect("/dashboard/meterreaderedit");
 };
 export const addallocation = async (formData) => {
-  const {  Name,MeterReadingUnit,Date } =
+  const {  Name,MeterReadingUnit } =
     Object.fromEntries(formData);
 
   try {
@@ -181,7 +188,6 @@ export const addallocation = async (formData) => {
     const newallocation = new allocation({
       Name,
       MeterReadingUnit,
-      Date,
     });
 
     await newallocation.save();
@@ -195,7 +201,7 @@ export const addallocation = async (formData) => {
 };
 
 export const updateallocation = async (formData) => {
-  const { id,Name,MeterReadingUnit,Date } =
+  const { id,Name,MeterReadingUnit } =
     Object.fromEntries(formData);
 
   try {
@@ -204,7 +210,7 @@ export const updateallocation = async (formData) => {
     const updateFields = {
       Name,
       MeterReadingUnit,
-      Date,
+    
     };
 
     Object.keys(updateFields).forEach(
@@ -222,21 +228,26 @@ export const updateallocation = async (formData) => {
   redirect("/dashboard/allocation");
 };
 
+
+
+
+
 export const addVendor = async (formData) => {
-  const { vendorsName,email,PurchaseOrders } =
+  const {  VendorsName, PurchaseOrderNumber, NumberOfMRUAssigned,VendorUser,VendorAssigned,Status  } =
     Object.fromEntries(formData);
 
   try {
     connectToDB();
 
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
+    
     const newVendor = new Vendor({
-      vendorsName,
-      email,
-      password: hashedPassword,
-      PurchaseOrders,
+      VendorsName,
+      PurchaseOrderNumber,
+      NumberOfMRUAssigned,
+      VendorUser,
+      VendorAssigned,
+      Status
     });
 
     await newVendor.save();
@@ -250,17 +261,19 @@ export const addVendor = async (formData) => {
 };
 
 export const updateVendor= async (formData) => {
-  const { id, vendorsName,email,PurchaseOrders } =
+  const { id, VendorsName, PurchaseOrderNumber, NumberOfMRUAssigned,VendorUser,VendorAssigned,Status } =
     Object.fromEntries(formData);
 
   try {
     connectToDB();
 
     const updateFields = {
-      vendorsName,
-      email,
-      password: hashedPassword,
-      PurchaseOrders,
+      VendorsName,
+      PurchaseOrderNumber,
+      NumberOfMRUAssigned,
+      VendorUser,
+      VendorAssigned,
+      Status
     };
 
     Object.keys(updateFields).forEach(
@@ -268,7 +281,7 @@ export const updateVendor= async (formData) => {
         (updateFields[key] === "" || undefined) && delete updateFields[key]
     );
 
-    await Vendor.findByIdAndUpdate(id, updateFields);
+    await vendor.findByIdAndUpdate(id, updateFields);
   } catch (err) {
     console.log(err);
     throw new Error("Failed to update vendor!");
@@ -339,7 +352,7 @@ export const deleteVendor = async (formData) => {
 
   try {
     connectToDB();
-    await Vendor.findByIdAndDelete(id);
+    await vendor.findByIdAndDelete(id);
   } catch (err) {
     console.log(err);
     throw new Error("Failed to delete vendor!");

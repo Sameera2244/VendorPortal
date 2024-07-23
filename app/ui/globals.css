@@ -7,8 +7,8 @@
 :root {
   --bg: #151c2c;
   --bgSoft: #182237;
-  --text: white;
-  --textSoft: #b7bac1;
+  --text: rgb(17, 16, 16);
+  --textSoft: #0e0e10;
 }
 
 * {

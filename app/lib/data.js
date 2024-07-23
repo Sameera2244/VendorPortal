@@ -39,8 +39,8 @@ export const fetchMeterreaders = async (q, page) => {
 
   try {
     connectToDB();
-    const count = await meterreader.find({ MeterReadingUnit: { $regex: regex } }).count();
-    const meterreaders = await meterreader.find({MeterReadingUnit: { $regex: regex } })
+    const count = await meterreader.find({ PurchaseOrderNumber: { $regex: regex } }).count();
+    const meterreaders = await meterreader.find({PurchaseorderNumber: { $regex: regex } })
       .limit(ITEM_PER_PAGE)
       .skip(ITEM_PER_PAGE * (page - 1));
     return { count, meterreaders };
@@ -126,8 +126,8 @@ export const fetchVendors = async (q, page) => {
 
   try {
     connectToDB();
-    const count = await vendor.find({ vendorsName: { $regex: regex } }).count();
-    const vendors = await vendor.find({ vendorsName: { $regex: regex } })
+    const count = await vendor.find({ VendorsName: { $regex: regex } }).count();
+    const vendors = await vendor.find({ VendorsName: { $regex: regex } })
       .limit(ITEM_PER_PAGE)
       .skip(ITEM_PER_PAGE * (page - 1));
     return { count, vendors };
@@ -148,6 +148,10 @@ export const fetchVendor = async (id) => {
     throw new Error("Failed to fetch vendor!");
   }
 };
+
+
+
+
 // DUMMY DATA
 
 export const cards = [
@@ -155,7 +159,7 @@ export const cards = [
     id: 1,
     title: "Total Users",
     number: 7,
-    change: 12,
+    change: 12, 
   },
   {
     id: 2,

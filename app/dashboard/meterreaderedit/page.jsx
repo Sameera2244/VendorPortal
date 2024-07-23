@@ -23,8 +23,7 @@ const MeterreadereditsPage = async ({ searchParams }) => {
         <thead>
           <tr>
             <td>Name</td>
-            <td>Meter Reading Unit</td>
-            <td>Date</td>
+            <td>Meter Reading Unit</td>           
             <td>Created At</td>
             <td>Action</td>
           </tr>
@@ -45,7 +44,7 @@ const MeterreadereditsPage = async ({ searchParams }) => {
                 </div>
               </td>
               <td>{meterreaderedit.MeterReadingUnit}</td>
-              <td>{meterreaderedit.Date}</td>
+              
               <td>{meterreaderedit.createdAt?.toString().slice(4, 16)}</td>
               <td>
                 <div className={styles.buttons}>

@@ -41,31 +41,48 @@ const userSchema = new mongoose.Schema(
 
 const meterreaderSchema = new mongoose.Schema(
   {
-    MeterReadingUnit: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    FirstName: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    LastName: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    MREfficency: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-  
-   
+  PurchaseOrderNumber: {
+    type: String,
+    required: true,                       
+    unique: true,
   },
-  { timestamps: true }
+  MeterReadingUnit: {
+    type: Number,
+    required: true,
+    unique: true,
+  },
+  TaskNumber: {
+    type: Number,
+    required: true,
+  },
+  NumberOfMeters: {
+    type: Number,
+    required: true,
+    min: 0,
+  },
+  MeterswithReads: {
+    type: Number,
+    required: true,
+    min: 0,
+  },
+  MeterswithoutReads: {
+    type: Number,
+    required: true,
+    min: 0,
+  },
+  Status: {
+    type: Boolean,
+    default: true,
+  },
+  MRUUserAssigned: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+},
+{ timestamps: true }
 );
+
 
 const meterreadereditSchema = new mongoose.Schema(
   {
@@ -79,12 +96,6 @@ const meterreadereditSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    Date: {
-      type: Number,
-      required: true,
-      unique: true,
-    },
-   
   },
   { timestamps: true }
 );
@@ -100,40 +111,42 @@ const allocationSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    Date: {
-      type: Number,
-      required: true,
-      unique: true,
-    },
+   
    
   },
   { timestamps: true }
 );
+
 const vendorSchema = new mongoose.Schema(
   {
-    vendorsName: {
+    VendorsName: {
       type: String,
+      required: true,                       
+      unique: true,
+    },
+    PurchaseOrderNumber: {
+      type:String,
       required: true,
       unique: true,
     },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
-    PurchaseOrders: {
+    NumberOfMRUAssigned: {
       type: Number,
+      required: true,
+    },
+    VendorUser: {
+      type: String,
       required: true,
       min: 0,
     },
  
+ 
   },
   { timestamps: true }
 );
+
+
+
+
 export const User = mongoose.models.User || mongoose.model("User", userSchema);
 export const meterreader = mongoose.models.meterreader || mongoose.model("meterreader", meterreaderSchema);
 export const meterreaderedit = mongoose.models.meterreaderedit || mongoose.model("meterreaderedit", meterreadereditSchema);

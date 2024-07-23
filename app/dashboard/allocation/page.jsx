@@ -24,7 +24,6 @@ const allocationsPage = async ({ searchParams }) => {
           <tr>
             <td>Name</td>
             <td>MeterReadingUnit</td>
-            <td>Date</td> 
             <td>Action</td>
           </tr>
         </thead>
@@ -44,7 +43,7 @@ const allocationsPage = async ({ searchParams }) => {
                 </div>
               </td>
               <td>{allocation.MeterReadingUnit}</td>
-              <td>{allocation.Date}</td>
+          
 
               <td>
                 <div className={styles.buttons}>

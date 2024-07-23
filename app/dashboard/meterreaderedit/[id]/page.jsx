@@ -23,11 +23,6 @@ const SinglemeterreadereditPage = async ({ params }) => {
           
           <label>Meter Reading Unit</label>
           <input type="number" name="MeterReadingUnit" placeholder={meterreaderedit.MeterReadingUnit} />
-            
-          <label>Date</label>
-          <input type="number" name="Date" placeholder={meterreaderedit.date} />
-          
-
           <button>Update</button>
         </form>
       </div>

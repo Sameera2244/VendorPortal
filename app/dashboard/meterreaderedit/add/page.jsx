@@ -14,12 +14,6 @@ const AddmeterreadereditPage = () => {
           <input type="number" placeholder="Meter Reading Unit" name="MeterReadingUnit" id="MeterReadingUnit" required />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="Date">Date:</label>
-          <input type="number" placeholder="Date" name="Date" id="Date"  required />
-        </div>
-
-
-        <div className={styles.formGroup}>
           <button type="submit">Submit</button>
         </div>
       </form>

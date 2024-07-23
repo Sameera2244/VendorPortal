@@ -29,15 +29,16 @@ const menuItems = [
         //icon: <MdSupervisedUserCircle />,
       //},
       {
-        title: "Meter Reader",
+        title: "Task Manager",
         path: "/dashboard/meterreader",
         icon: <MdShoppingBag />,
       },
-      {
-        title: "Meter Reader Edit",
-        path: "/dashboard/meterreaderedit",
-        icon: <MdShoppingBag />,
-      },
+      // {
+      //   title: "Meter Reader Edit",
+      //   path: "/dashboard/meterreaderedit",
+      //   icon: <MdShoppingBag />,
+      // },
+     
       // {
       //   title: "Allocation",
       //   path: "/dashboard/allocation",

@@ -22,8 +22,7 @@ const SingleallocationPage = async ({ params }) => {
           <input type="text" name="Name" placeholder={allocation.Name} />
           <label>MeterReadingUnit</label>
           <input type="number" name="MeterReadingUnit" placeholder={allocation.MeterReadingUnit} />
-          <label>Date</label>
-          <input type="number" name="Date" placeholder={allocation.Date} />
+         
          
           <button>Update</button>
         </form>

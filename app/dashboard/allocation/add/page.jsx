@@ -13,10 +13,7 @@ const AddallocationPage = () => {
           <label htmlFor="MeterReadingUnit">Meter Reading Unit:</label>
           <input type="number" placeholder="MeterReadingUnit" name="MeterReadingUnit" id="MeterReadingUnit" required />
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="Date">Date:</label>
-          <input type="number" placeholder="Date" name="Date" id="Date" required />
-        </div>
+       
 
 
         <div className={styles.formGroup}>

@@ -1,28 +1,28 @@
 import Image from "next/image";
 import Link from "next/link";
-import styles from "@/app/ui/dashboard/meterreader/meterreader.module.css";
+import styles from "@/app/ui/dashboard/taskmanager/taskmanager.module.css";
 import Search from "@/app/ui/dashboard/search/search";
 import Pagination from "@/app/ui/dashboard/pagination/pagination";
-import { fetchMeterreaders } from "@/app/lib/data";
-import { deletemeterreader } from "@/app/lib/actions";
+import { fetchTaskManagers } from "@/app/lib/data";
+import { deleteTaskManager } from "@/app/lib/actions";
 
-const MeterreadersPage = async ({ searchParams }) => {
+const TaskManagersPage = async ({ searchParams }) => {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
-  const { count, meterreaders } = await fetchMeterreaders(q, page);
+  const { count, taskmanagers } = await fetchTaskManagers(q, page);
 
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-        <Search placeholder="Search for a meterreaders..." />
-        <Link href="/dashboard/meterreader/add">
+        <Search placeholder="Search for a taskmanager..." />
+        <Link href="/dashboard/taskmanager/add">
           <button className={styles.addButton}>Add New</button>
         </Link>
       </div>
       <table className={styles.table}>
         <thead>
           <tr>
-          <td>Purchase Order Number</td>
+            <td>Purchase Order Number</td>
             <td>Meter Reading Unit</td>           
             <td>Task Number</td>
             <td>Number of Meters</td>
@@ -30,41 +30,41 @@ const MeterreadersPage = async ({ searchParams }) => {
             <td>Meters without Reads</td>
             <td>Status</td>
             <td>MRU User Assigned</td>
-            
           </tr>
         </thead>
         <tbody>
-          {meterreaders.map((meterreader) => (
-            <tr key={meterreader.id}>
+          {taskmanagers.map((taskmanager) => (
+            <tr key={taskmanager.id}>
               <td>
-                <div className={styles.meterreader}>
+                <div className={styles.taskmanager}>
                   <Image
-                    src={meterreader.img || "/noavatar.png"}
+                    src={taskmanager.img || "/noavatar.png"}
                     alt=""
                     width={40}
                     height={40}
-                    className={styles.vendorImage}
+                    className={styles.taskmanagerImage}
                   />
-                    {meterreader.PurchaseOrderNumber}
+                  {taskmanager.PurchaseOrderNumber}
                 </div>
               </td>
-              <td>{meterreader.MeterReadingUnit}</td> 
-              <td>{meterreader.TaskNumber}</td>
-              <td>{meterreader.NumberOfMeters}</td>
-              <td>{meterreader.MeterswithReads}</td>
-              <td>{meterreader.MeterswithoutReads}</td>
-              <td>{meterreader.Status}</td>
-              <td>{meterreader.MRUuserAssigned}</td>
+              <td>{taskmanager.MeterReadingUnit}</td> 
+              <td>{taskmanager.TaskNumber}</td>
+              <td>{taskmanager.NumberOfMeters}</td>
+              <td>{taskmanager.MeterswithReads}</td>
+              <td>{taskmanager.MeterswithoutReads}</td>
+              <td>{taskmanager.Status}</td>
+              <td>{taskmanager.MRUuserAssigned}</td>
               
+
               <td>
                 <div className={styles.buttons}>
-                  <Link href={`/dashboard/meterreader/${meterreader.id}`}>
+                  <Link href={`/dashboard/meterreaderedit/${taskmanager.id}`}>
                     <button className={`${styles.button} ${styles.view}`}>
                       View
                     </button>
                   </Link>
-                  <form action={deletemeterreader}>
-                    <input type="hidden" name="id" value={meterreader.id} />
+                  <form action={deleteTaskManager}>
+                    <input type="hidden" name="id" value={taskmanager.id} />
                     <button className={`${styles.button} ${styles.delete}`}>
                       Delete
                     </button>
@@ -80,4 +80,4 @@ const MeterreadersPage = async ({ searchParams }) => {
   );
 };
 
-export default MeterreadersPage;
+export default TaskManagersPage;

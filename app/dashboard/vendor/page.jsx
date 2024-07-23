@@ -23,10 +23,12 @@ const vendorsPage = async ({ searchParams }) => {
         <thead>
           <tr>
             <td>VendorsName</td>
-            <td>Email</td>
-            <td>PurchaseOrders</td>
-            <td>Created At</td>
-            <td>Action</td>
+            <td>Purchase Order Number</td>
+            <td>Number Of MRU Assigned</td>
+            <td>Vendor User</td>
+            <td>Status</td>
+            <td>Vendor Assigned</td>
+         
           </tr>
         </thead>
         <tbody>
@@ -41,12 +43,15 @@ const vendorsPage = async ({ searchParams }) => {
                     height={40}
                     className={styles.vendorImage}
                   />
-                  {vendor.vendorsName}
+                  {vendor.VendorsName}
                 </div>
               </td>
-              <td>{vendor.email}</td>
-              <td>{vendor.PurchaseOrders}</td>
-              <td>{vendor.createdAt?.toString().slice(4, 16)}</td>
+              <td>{vendor.PurchaseOrderNumber}</td>
+              <td>{vendor.NumberOfMRUAssigned}</td>
+              <td>{vendor.VendorUser}</td>
+              <td>{vendor.Status}</td>
+              <td>{vendor.VendorAssigned}</td>
+              
              
               <td>
                 <div className={styles.buttons}>
@@ -57,9 +62,7 @@ const vendorsPage = async ({ searchParams }) => {
                   </Link>
                   <form action={deletevendor}>
                     <input type="hidden" name="id" value={vendor.id} />
-                    <button className={`${styles.button} ${styles.delete}`}>
-                      Delete
-                    </button>
+              
                   </form>
                 </div>
               </td>
