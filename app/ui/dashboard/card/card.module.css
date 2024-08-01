@@ -1,118 +1,39 @@
-.cardContainer {
+.card-container {
   display: flex;
-  justify-content: center;
-  gap: 30px;
-  padding: 15px;
-}
-
-.card {
-  background-color: #333;
-  background-image: linear-gradient(135deg,#8a8b73, #85e6e0); 
-  color: #fff;
-  border: 1px solid #444;
-  border-radius: 8px;
-  padding: 20px; /* Increased padding for larger cards */
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 100px; /* Added width for consistency */
-}
-
-.card:hover {
-  background-color: #555;
-  color: #fff;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-}
-
-
-
-.reactCalendar {
-  background-color: #fcf6f6;
-  color: #050505;
-  border: none;
-}
-/* .react-calendar__navigation button {
-  color: #fff;
-  background-color: #c91b1b;
-}
-
-.react-calendar__tile {
-  background-color: #000;
-  color: #fff;
-  border: #8a0404;
-}
-
-.react-calendar__tile--active {
-  background-color: #3a1b1b;
-  color: #fff;
-
-  
-}
-
-.react-calendar__tile--now {
- 
-  color:black;
-  background-color: #8a0404;
-  
-} */
-
-.detailsCard, .taskList {
-  background-color: #444;
- 
-  border: 1px solid #555;
-  border-radius: 8px;
-  padding: 30px; /* Increased padding for larger cards */
-  width: 350px; /* Increased width for larger cards */
-  text-align: left;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.detailsCard h3, .taskList h3 {
-  margin-top: 0;
-}
-
-.taskList ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.taskList li {
-  margin: 10px 0;
-}
-.taskCard {
-  background-color: #444;
-  color: #fff;
-  border: 1px solid #555;
-  border-radius: 8px;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.calendar {
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.task-details {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
-  margin-top: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  text-align: center;
 }
 
-.taskTable {
-  margin-top: 10px;
+.task-details h2 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  color: #333;
 }
 
-.taskTable table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: #333;
-  color: #fff;
-}
-
-.taskTable th, .taskTable td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #666;
-}
-
-.taskTable th {
-  background-color: #222;
-}
-
-.taskTable tbody tr:hover {
-  background-color: #555;
+.task-details p {
+  margin: 5px 0;
+  font-size: 1.1em;
+  color: #555;
 }
 

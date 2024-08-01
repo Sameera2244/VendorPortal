@@ -4,8 +4,10 @@
 
 .menu {
   flex: 1;
-  background-image: linear-gradient(135deg,#8a8b73, #85e6e0);
+  /* background-image: linear-gradient(135deg,#8a8b73, #85e6e0); */
+  background-color: #4fa3b8;
   padding: 20px;
+  color:white;
   min-height: 100vh;
 }
 

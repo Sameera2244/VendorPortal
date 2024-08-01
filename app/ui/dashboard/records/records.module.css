@@ -1,0 +1,156 @@
+.container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.exportSearch {
+  display: flex;
+  align-items: center;
+}
+
+.exportButton {
+  background-color:#1BCFB4;
+  color:white;
+  border-radius: 5px;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.searchInput {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.stat {
+  background-color:#7fb4c2;
+  color: white;
+  font-weight: bold;
+  padding: 20px;
+  text-align: center;
+  flex: 1;
+  margin: 0 10px;
+  border-radius: 5px ;
+  border:2px solid #7fb4c2;
+}
+
+.tabs {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.tabs button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  /* background-color: #ffc107; */
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.historyy{
+  background-color: #FE9496;
+}
+.activeBut{
+  background-color: #4BCBEB;
+}
+.activeTab {
+  background-color: #9E58FF;
+}
+
+.uploadButton {
+  background-color: #1976e1;
+  margin-left: auto;
+  color:white !important;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 10px;
+  border: 1px solid #4fa3b8;
+  text-align: left;
+}
+
+.table th {
+  background-color: #4fa3b8;
+  color:white;
+}
+
+.addButton {
+  background-color: #4fa3b8;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popupContent {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.popupContent h2 {
+  margin-bottom: 20px;
+}
+
+.popupContent input,
+.popupContent select {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.popupContent button {
+  background-color: #4fa3b8;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.popupContent button:last-child {
+  background-color: #f44336;
+}

@@ -28,11 +28,11 @@ const menuItems = [
         //path: "/dashboard/vendoruser",
         //icon: <MdSupervisedUserCircle />,
       //},
-      {
-        title: "Task Manager",
-        path: "/dashboard/meterreader",
-        icon: <MdShoppingBag />,
-      },
+      // {
+      //   title: "Task Manager",
+      //   path: "/dashboard/meterreader",
+      //   icon: <MdShoppingBag />,
+      // },
       // {
       //   title: "Meter Reader Edit",
       //   path: "/dashboard/meterreaderedit",
@@ -44,12 +44,22 @@ const menuItems = [
       //   path: "/dashboard/allocation",
       //   icon: <MdShoppingBag />,
       // },
+      // {
+      //   title: "Vendor",
+      //   path: "/dashboard/vendor",
+      //   icon: <MdShoppingBag />,
+      // },
       {
-        title: "Vendor",
-        path: "/dashboard/vendor",
+        title: "Task Manager",
+        path: "/dashboard/records",
+        icon: <MdShoppingBag />,
+      },
+      {
+        title: "Meter Reader Profiles",
+        path: "/dashboard/meterreaderprofile",
         icon: <MdShoppingBag />,
       }
-    ],
+        ],
   },
   {
     title: "Analytics",

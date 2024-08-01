@@ -9,6 +9,6 @@
 
 .container:hover,
 .active {
-  background-color: rgb(58, 58, 146);
-  background-image: linear-gradient(135deg,#8a8b73, #85e6e0);
+  background-color:#98c5d0 ;
+  /* background-image: linear-gradient(135deg,#8a8b73, #85e6e0); */
 }
