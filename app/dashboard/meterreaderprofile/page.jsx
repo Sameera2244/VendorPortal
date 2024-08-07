@@ -79,6 +79,7 @@ const Page = () => {
     createdAt: '',
   });
   const [showNewOrderForm, setShowNewOrderForm] = useState(false);
+  const [deleteIndex, setDeleteIndex] = useState(null);
 
   const handleEditClick = (index) => {
     setEditIndex(index);
@@ -147,6 +148,20 @@ const Page = () => {
     });
   };
 
+  const handleDeleteClick = (index) => {
+    setDeleteIndex(index);
+  };
+
+  const handleConfirmDelete = () => {
+    const updatedOrders = orders.filter((_, index) => index !== deleteIndex);
+    setOrders(updatedOrders);
+    setDeleteIndex(null);
+  };
+
+  const handleCancelDelete = () => {
+    setDeleteIndex(null);
+  };
+
   const exportCSV = () => {
     const headers = ['MR Id', 'MR Name', 'Task Assigned', 'Phone No', 'MRU Assigned', 'Total No of Meter readers', 'Last Assigned date', 'Pending Meter Readers'];
     const rows = orders.map(order => [
@@ -179,7 +194,6 @@ const Page = () => {
         <h1></h1>
         <div className={styles.exportSearch}>
           <button className={styles.exportButton} onClick={exportCSV}>Export CSV</button>
-          <input type="text" className={styles.searchInput} placeholder="Search Routes" />
         </div>
       </div>
 
@@ -227,6 +241,17 @@ const Page = () => {
             <input type="text" name="createdAt" placeholder="Pending Meter Readers" value={newOrder.createdAt} onChange={handleNewOrderChange} />
             <button onClick={handleSaveNewOrder}>Save</button>
             <button onClick={handleCancelNewOrder}>Cancel</button>
+          </div>
+        </div>
+      )}
+
+      {deleteIndex !== null && (
+        <div className={styles.popup}>
+          <div className={styles.popupContent}>
+            <h2>Confirm Delete</h2>
+            <p>Are you sure you want to delete this order?</p>
+            <button onClick={handleConfirmDelete}>Yes</button>
+            <button onClick={handleCancelDelete}>No</button>
           </div>
         </div>
       )}
@@ -297,7 +322,10 @@ const Page = () => {
                     <button onClick={handleCancelClick}>Cancel</button>
                   </>
                 ) : (
-                  <button onClick={() => handleEditClick(index)}>Edit</button>
+                  <>
+                    <button onClick={() => handleEditClick(index)}>Edit</button>
+                    <button onClick={() => handleDeleteClick(index)}>Delete</button>
+                  </>
                 )}
               </td>
             </tr>
@@ -309,4 +337,3 @@ const Page = () => {
 };
 
 export default Page;
-

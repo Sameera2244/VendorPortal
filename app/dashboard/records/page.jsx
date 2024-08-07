@@ -79,6 +79,11 @@ const Page = () => {
     createdAt: '',
   });
   const [showNewOrderForm, setShowNewOrderForm] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredOrders, setFilteredOrders] = useState(orders);
+
+  const [deleteIndex, setDeleteIndex] = useState(null);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   const handleEditClick = (index) => {
     setEditIndex(index);
@@ -94,6 +99,7 @@ const Page = () => {
     const updatedOrders = [...orders];
     updatedOrders[index] = editData;
     setOrders(updatedOrders);
+    setFilteredOrders(updatedOrders);
     setEditIndex(null);
     setEditData({});
   };
@@ -133,7 +139,9 @@ const Page = () => {
   };
 
   const handleSaveNewOrder = () => {
-    setOrders([...orders, newOrder]);
+    const updatedOrders = [...orders, newOrder];
+    setOrders(updatedOrders);
+    setFilteredOrders(updatedOrders);
     setShowNewOrderForm(false);
     setNewOrder({
       vendorNumber: '',
@@ -173,14 +181,38 @@ const Page = () => {
     document.body.removeChild(link);
   };
 
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleSearchClick = () => {
+    const filtered = orders.filter(order => order.vendorNumber.includes(searchQuery));
+    setFilteredOrders(filtered);
+  };
+
+  const handleDeleteClick = (index) => {
+    setDeleteIndex(index);
+    setShowDeleteConfirm(true);
+  };
+
+  const handleConfirmDelete = () => {
+    const updatedOrders = orders.filter((_, index) => index !== deleteIndex);
+    setOrders(updatedOrders);
+    setFilteredOrders(updatedOrders);
+    setShowDeleteConfirm(false);
+    setDeleteIndex(null);
+  };
+
+  const handleCancelDelete = () => {
+    setShowDeleteConfirm(false);
+    setDeleteIndex(null);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <h1></h1>
-        <div className={styles.exportSearch}>
-          <button className={styles.exportButton} onClick={exportCSV}>Export CSV</button>
-          <input type="text" className={styles.searchInput} placeholder="Search Routes" />
-        </div>
+        <button className={styles.exportButton} onClick={exportCSV}>Export CSV</button>
       </div>
 
       <div className={styles.stats}>
@@ -209,6 +241,17 @@ const Page = () => {
         <button className={styles.addButton} onClick={handleAddNewClick}>Add New</button>
       </div>
 
+      <div className={styles.searchContainer}>
+        <input 
+          type="text" 
+          placeholder="Search by M No" 
+          value={searchQuery} 
+          onChange={handleSearchChange} 
+          className={styles.searchInput}
+        />
+        <button className={styles.searchButton} onClick={handleSearchClick}>Search</button>
+      </div>
+
       {showNewOrderForm && (
         <div className={styles.popup}>
           <div className={styles.popupContent}>
@@ -231,6 +274,17 @@ const Page = () => {
         </div>
       )}
 
+      {showDeleteConfirm && (
+        <div className={styles.popup}>
+          <div className={styles.popupContent}>
+            <h2>Confirm Delete</h2>
+            <p>Are you sure you want to delete this order?</p>
+            <button onClick={handleConfirmDelete}>Yes, Delete</button>
+            <button onClick={handleCancelDelete}>Cancel</button>
+          </div>
+        </div>
+      )}
+
       <table className={styles.table}>
         <thead>
           <tr>
@@ -246,7 +300,7 @@ const Page = () => {
           </tr>
         </thead>
         <tbody>
-          {orders.map((order, index) => (
+          {filteredOrders.map((order, index) => (
             <tr key={index}>
               <td>{order.vendorNumber}</td>
               <td>{order.vendorID}</td>
@@ -298,7 +352,10 @@ const Page = () => {
                     <button onClick={handleCancelClick}>Cancel</button>
                   </>
                 ) : (
-                  <button onClick={() => handleEditClick(index)}>Edit</button>
+                  <>
+                    <button onClick={() => handleEditClick(index)}>Edit</button>
+                    <button onClick={() => handleDeleteClick(index)}>Delete</button>
+                  </>
                 )}
               </td>
             </tr>
@@ -310,4 +367,3 @@ const Page = () => {
 };
 
 export default Page;
-

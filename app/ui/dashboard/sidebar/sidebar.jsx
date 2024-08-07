@@ -44,11 +44,11 @@ const menuItems = [
       //   path: "/dashboard/allocation",
       //   icon: <MdShoppingBag />,
       // },
-      // {
+      //  {
       //   title: "Vendor",
       //   path: "/dashboard/vendor",
       //   icon: <MdShoppingBag />,
-      // },
+      //  },
       {
         title: "Task Manager",
         path: "/dashboard/records",
