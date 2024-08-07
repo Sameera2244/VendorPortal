@@ -44,7 +44,7 @@ const MapContainer = styled.div`
 `;
 
 const teams = [
-  { Name: 'Assigned', Vendors: '0 Vendor', online: '0 Online', offline: '0 Offline', color: '#7ab0c4' },
+  { Name: 'Assigned', Vendors: '9 Vendor', online: '0 Online', offline: '0 Offline', color: '#7ab0c4' },
   { Name: 'Unassigned', Vendors: '8 Vendor', online: '5 Online', offline: '3 Offline', color: '#7ab0c4' },
   { Name: 'Off Duty', Vendors: '4 Vendor', online: '2 Online', offline: '2 Offline', color: '#7ab0c4' },
   { Name: 'Available', Vendors: '16 Vendor', online: '12 Online', offline: '4 Offline', color: '#7ab0c4' },
