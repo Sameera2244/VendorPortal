@@ -353,7 +353,7 @@ const Page = () => {
                   </>
                 ) : (
                   <>
-                    <button onClick={() => handleEditClick(index)}>Edit</button>
+                    <button onClick={() => handleEditClick(index)}>Edit</button> <br></br> <br></br>
                     <button onClick={() => handleDeleteClick(index)}>Delete</button>
                   </>
                 )}

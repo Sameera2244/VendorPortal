@@ -1,9 +1,10 @@
 .container {
   display: flex;
-  align-items: center;
+  align-items:last baseline;
   flex-direction: column;
   justify-content: space-between;
-  text-align: center;
+  
+  text-align:center;
   margin-top: 30px;
   padding: 1rem;
   color: var(--textSoft);
