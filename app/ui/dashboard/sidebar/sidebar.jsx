@@ -99,10 +99,19 @@ const menuItems = [
 ];
 
 const Sidebar = async () => {
-  const { user } = await auth();
+  // const { user } = await auth();
   return (
     <div className={styles.container}>
-      <div className={styles.user}>
+       <div className={styles.logoContainer}>
+        <Image
+          className={styles.logo}
+          src="/brontobytelogo1.png" // Replace with your logo path
+          alt="Logo"
+          width="150"
+          height="50"
+        />
+      </div>
+    {/* <div className={styles.user}>
         <Image
           className={styles.userImage}
           src={user.img || "/noavatar.png"}
@@ -114,7 +123,8 @@ const Sidebar = async () => {
           <span className={styles.username}>{user.username}</span>
           <span className={styles.userTitle}>Administrator</span>
         </div>
-      </div>
+      </div> */}
+      
       <ul className={styles.list}>
         {menuItems.map((cat) => (
           <li key={cat.title}>

@@ -1,34 +1,37 @@
 .container {
   padding: 20px;
-  font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif; /* Updated font-family */
 }
+
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* Ensure consistent font */
 }
 
 .exportSearch {
   display: flex;
   align-items: center;
+  font-family: Arial, sans-serif; /* Ensure consistent font */
 }
 
 .exportButton {
-  background-color:#1BCFB4;
-  color:white;
+  background-color: #109814;
   border-radius: 5px;
   border: none;
   padding: 10px 20px;
+  color: white;
   font-weight: bold;
   cursor: pointer;
   margin-right: 10px;
+  font-family: Arial, sans-serif; /* Ensure consistent font */
 }
 
 .searchInput {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-family: Arial, sans-serif; /* Ensure consistent font */
 }
 
 .stats {
@@ -36,23 +39,23 @@
   justify-content: space-between;
   margin-bottom: 20px;
 }
-
 .stat {
-  background-color:#7fb4c2;
-  color: white;
+  background-color:  whitesmoke;
+  color: rgb(3, 3, 3);
   font-weight: bold;
   padding: 20px;
   text-align: center;
   flex: 1;
   margin: 0 10px;
   border-radius: 5px ;
-  border:2px solid #7fb4c2;
+  border:2px solid  whitesmoke;
 }
 
 .tabs {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  justify-content: space-between; /* This will space out the items in the container */
+  align-items: center; /* Center vertically if needed */
+  margin-bottom: 20px;/* Ensure consistent font */
 }
 
 .tabs button {
@@ -60,51 +63,79 @@
   border: none;
   cursor: pointer;
   margin-right: 10px;
-  /* background-color: #ffc107; */
-  color: white;
+  color: rgb(21, 21, 21);
   border-radius: 5px;
   font-weight: bold;
+  font-family: Arial, sans-serif; /* Ensure consistent font */
 }
 
-.historyy{
-  background-color: #FE9496;
+.historyy {
+  background-color: #149e74;
 }
-.activeBut{
-  background-color: #4BCBEB;
+
+.activeBut {
+  background-color: #39A1F4;
 }
+
 .activeTab {
-  background-color: #9E58FF;
+  background-color: #F5A623;
 }
 
-.uploadButton {
-  background-color: #1976e1;
-  margin-left: auto;
-  color:white !important;
-}
+
 
 .table {
   width: 100%;
   border-collapse: collapse;
+  color: white; /* Set the default text color to black */
 }
 
-.table th, .table td {
-  padding: 10px;
-  border: 1px solid #4fa3b8;
-  text-align: left;
+
+.table th,
+.table td {
+  border: 1px dotted whitesmoke;
+  padding: 15px;
+  border-bottom: 1px solid #ddd; 
+}
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
 }
 
 .table th {
-  background-color: #4fa3b8;
-  color:white;
+  background-color: rgb(27, 12, 104) !important;
+  text-align: center;
+  border-radius: 2px;
+  color: rgb(244, 238, 238); /* Ensure the header text is black */  
+  font-weight: bold;
+  font-size: larger;
+
 }
 
-.addButton {
-  background-color: #4fa3b8;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
+th.actions,td.actions{
+  width:150px;
+}
+
+.table td {
+  color: black; /* Ensure the cell text is black */
+ background-color: whitesmoke; 
+ border: 1px solid #ddd;
+ font-size: large; 
+
+}
+
+.table td select {
+  width: 100%;
+  padding: 5px;
+  font-family: Arial, sans-serif; 
+}
+
+.table td button {
+  padding: 5px 10px;
   cursor: pointer;
-  margin-left: auto;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+
 }
 
 .popup {
@@ -113,65 +144,77 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  color: rgb(133, 131, 131);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .popupContent {
-  background: #ffffff;
+  background: linear-gradient(to right, black, blue);
   padding: 20px;
-  border-radius: 10px;
-  width: 300px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.popupContent h2 {
-  margin-bottom: 20px;
+  border-radius: 5px;
+  width: 400px;
+  font-family: Arial, sans-serif; /* Ensure consistent font */
 }
 
 .popupContent input,
 .popupContent select {
   display: block;
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  margin: 10px 0;
+  padding: 8px;
+  color: rgb(133, 131, 131);
+  font-family: Arial, sans-serif; /* Ensure consistent font */
 }
 
 .popupContent button {
-  background-color: #4fa3b8;
-  color: #ffffff;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  margin-right: 10px;
+  margin: 5px;
+  font-family: Arial, sans-serif; 
+  color:grey;/* Ensure consistent font */
 }
 
-.popupContent button:last-child {
-  background-color: #f44336;
+.addButton {
+  background-color: #118949; /* Your desired background color */
+  color: white !important; /* Button text color */
+  border: none; /* Remove default border */
+  padding: 10px 20px; /* Padding for button size */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  font-size: 16px; /* Adjust font size if needed */
+  margin-left: auto; /* Push the button to the right */
+  font-family: Arial, sans-serif; /* Ensure consistent font */
 }
+
 .searchContainer {
+  margin: 20px 0;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 20px;
+  align-items: center;
+  font-family: Arial, sans-serif; /* Ensure consistent font */
 }
 
 .searchInput {
-  margin-bottom: 10px;
   padding: 8px;
+  margin-right: 10px;
   border: 1px solid #ccc;
+  color: black;
   border-radius: 4px;
+  width: 200px;
+  font-family: Arial, sans-serif; /* Ensure consistent font */
 }
 
 .searchButton {
-  padding: 8px 12px;
-  background-color: #007bff;
-  color: white;
+  padding: 8px 15px;
   border: none;
+  background-color: #6e7e97; /* Blue color */
+  color: rgb(244, 237, 237);
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: Arial, sans-serif; /* Ensure consistent font */
+  font-weight: bold;
+}
+
+.searchButton:hover {
+  background-color: #0c1c2d; /* Darker blue color */
 }

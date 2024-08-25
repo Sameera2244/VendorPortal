@@ -348,7 +348,7 @@ const Page = () => {
               <td>
                 {editIndex === index ? (
                   <>
-                    <button onClick={() => handleSaveClick(index)}>Update</button>
+                    <button onClick={() => handleSaveClick(index)}>Update</button><br></br><br></br>
                     <button onClick={handleCancelClick}>Cancel</button>
                   </>
                 ) : (
