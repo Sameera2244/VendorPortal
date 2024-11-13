@@ -1,339 +1,126 @@
 'use client'
-import React, { useState } from 'react';
-import styles from '@/app/ui/dashboard/records/records.module.css';
+import React from 'react';
 
-const Page = () => {
-  const [orders, setOrders] = useState([
-    {
-      vendorNumber: '3415',
-      vendorID: 'sameera',
-      vendor: 'Banjara Hills',
-      phoneNo: '7988267986',
-      type: 'Normal',
-      driver: '',
-      dueTime: '12-07-2024 09:12:40',
-      createdAt: '4 days ago',
-    },
-    {
-      vendorNumber: '33082842',
-      vendorID: '110',
-      vendor: 'SR Nagar',
-      phoneNo: '9618841944',
-      type: 'Normal',
-      driver: '',
-      dueTime: '05-07-2024 09:12:59',
-      createdAt: '1 week ago',
-    },
-    {
-      vendorNumber: '46333924',
-      vendorID: '49',
-      vendor: 'Red Hills',
-      phoneNo: '8256689458',
-      type: 'Normal',
-      driver: '',
-      dueTime: '04-07-2024 09:12:56',
-      createdAt: '2 weeks ago',
-    },
-    {
-      vendorNumber: '33082842',
-      vendorID: '110',
-      vendor: 'Jubilee Hills',
-      phoneNo: '9731209785',
-      type: 'Normal',
-      driver: '',
-      dueTime: '02-07-2024 09:12:49',
-      createdAt: '2 weeks ago',
-    },
-    {
-      vendorNumber: '33082842',
-      vendorID: '110',
-      vendor: 'Ameerpet',
-      phoneNo: '8731236789',
-      type: 'Normal',
-      driver: '',
-      dueTime: '06-07-2024 09:00:57',
-      createdAt: '1 week ago',
-    },
-    {
-      vendorNumber: '92504223',
-      vendorID: '27',
-      vendor: 'Shamshabad',
-      phoneNo: '87651234160',
-      type: 'Normal',
-      driver: '',
-      dueTime: '05-07-2024 14:53:29',
-      createdAt: '2 weeks ago',
-    },
-  ]);
+async function fetchVendorData() {
+  const apiUrl =
+    'http://is1:8000/sap/opu/odata/sap/ZGET_MRA_PURCHASE_ORDER_SRV/GET_MRA_PO_SET?$filter=IndsKey%20eq%20%27ZISU%27';
+  
+  const username = 'Nasir';
+  const password = 'Nasir@123';
 
-  const [editIndex, setEditIndex] = useState(null);
-  const [editData, setEditData] = useState({});
-  const [newOrder, setNewOrder] = useState({
-    vendorNumber: '',
-    vendorID: '',
-    vendor: '',
-    phoneNo: '',
-    type: 'Normal',
-    driver: '',
-    dueTime: '',
-    createdAt: '',
+  const response = await fetch(apiUrl, {
+    method: 'GET',
+    headers: {
+      Authorization: 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
   });
-  const [showNewOrderForm, setShowNewOrderForm] = useState(false);
-  const [deleteIndex, setDeleteIndex] = useState(null);
 
-  const handleEditClick = (index) => {
-    setEditIndex(index);
-    setEditData({ ...orders[index] });
-  };
+  if (!response.ok) {
+    throw new Error('Failed to fetch data');
+  }
 
-  const handleCancelClick = () => {
-    setEditIndex(null);
-    setEditData({});
-  };
+  const data = await response.json();
+  return data.d.results || [];
+}
 
-  const handleSaveClick = (index) => {
-    const updatedOrders = [...orders];
-    updatedOrders[index] = editData;
-    setOrders(updatedOrders);
-    setEditIndex(null);
-    setEditData({});
-  };
+// Function to format date from "2024-04-01T00:00:00" to "2024-04-01"
+const formatDate = (dateString) => {
+  if (!dateString) return '';
+  return dateString.split('T')[0];
+};
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setEditData({
-      ...editData,
-      [name]: value,
-    });
-  };
+const TablePage = async () => {
+  let vendorData = [];
 
-  const handleNewOrderChange = (e) => {
-    const { name, value } = e.target;
-    setNewOrder({
-      ...newOrder,
-      [name]: value,
-    });
-  };
+  try {
+    vendorData = await fetchVendorData();
+  } catch (error) {
+    console.error('Error fetching data:', error.message);
+  }
 
   const handleAddNewClick = () => {
-    setShowNewOrderForm(true);
-  };
-
-  const handleCancelNewOrder = () => {
-    setShowNewOrderForm(false);
-    setNewOrder({
-      vendorNumber: '',
-      vendorID: '',
-      vendor: '',
-      phoneNo: '',
-      type: 'Normal',
-      driver: '',
-      dueTime: '',
-      createdAt: '',
-    });
-  };
-
-  const handleSaveNewOrder = () => {
-    setOrders([...orders, newOrder]);
-    setShowNewOrderForm(false);
-    setNewOrder({
-      vendorNumber: '',
-      vendorID: '',
-      vendor: '',
-      phoneNo: '',
-      type: 'Normal',
-      driver: '',
-      dueTime: '',
-      createdAt: '',
-    });
-  };
-
-  const handleDeleteClick = (index) => {
-    setDeleteIndex(index);
-  };
-
-  const handleConfirmDelete = () => {
-    const updatedOrders = orders.filter((_, index) => index !== deleteIndex);
-    setOrders(updatedOrders);
-    setDeleteIndex(null);
-  };
-
-  const handleCancelDelete = () => {
-    setDeleteIndex(null);
-  };
-
-  const exportCSV = () => {
-    const headers = ['MR Id', 'MR Name', 'Task Assigned', 'Phone No', 'MRU Assigned', 'Total No of Meter readers', 'Last Assigned date', 'Pending Meter Readers'];
-    const rows = orders.map(order => [
-      order.vendorNumber,
-      order.vendorID,
-      order.vendor,
-      order.phoneNo,
-      order.type,
-      order.driver,
-      order.dueTime,
-      order.createdAt,
-    ]);
-
-    let csvContent = 'data:text/csv;charset=utf-8,'
-      + headers.join(',') + '\n'
-      + rows.map(row => row.join(',')).join('\n');
-
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement('a');
-    link.setAttribute('href', encodedUri);
-    link.setAttribute('download', 'orders.csv');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    console.log('Add New clicked');
+    // Handle Add New click logic here
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h1></h1>
-        <div className={styles.exportSearch}>
-          <button className={styles.exportButton} onClick={exportCSV}>Export CSV</button>
+    <div>
+      {/* Stats Section */}
+      <div className="grid grid-cols-4 gap-6 mb-6 mt-6">
+        <div className="flex flex-col items-center bg-gray-100 p-4 rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold text-gray-800">308</h2>
+          <p className="text-sm text-gray-600">Pending Orders</p>
+        </div>
+        <div className="flex flex-col items-center bg-gray-100 p-4 rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold text-gray-800">392</h2>
+          <p className="text-sm text-gray-600">Active Orders</p>
+        </div>
+        <div className="flex flex-col items-center bg-gray-100 p-4 rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold text-gray-800">85</h2>
+          <p className="text-sm text-gray-600">Active Meter Reader</p>
+        </div>
+        <div className="flex flex-col items-center bg-gray-100 p-4 rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold text-gray-800">63</h2>
+          <p className="text-sm text-gray-600">Completed Orders</p>
         </div>
       </div>
 
-      <div className={styles.stats}>
-        <div className={styles.stat}>
-          <h2>308</h2>
-          <p>Pending Orders</p>
+      <div>
+        {/* Tabs Section */}
+        <div className="flex space-x-4 mb-6">
+          <button className="px-4 py-2 bg-orange-400 text-black rounded-lg">
+            Pending Assignment (308)
+          </button>
+          <button className="px-4 py-2 bg-blue-500 text-black rounded-lg">
+            Active (392)
+          </button>
+          <button className="px-4 py-2 bg-teal-600 text-black rounded-lg">
+            History (203)
+          </button>
         </div>
-        <div className={styles.stat}>
-          <h2>392</h2>
-          <p>Active Orders</p>
-        </div>
-        <div className={styles.stat}>
-          <h2>85</h2>
-          <p>Active Meter Reader</p>
-        </div>
-        <div className={styles.stat}>
-          <h2>63</h2>
-          <p>Completed Orders</p>
-        </div>
-      </div>
 
-      <div className={styles.tabs}>
-        <button className={styles.activeTab}>Pending Assignment (308)</button>
-        <button className={styles.activeBut}>Active (392)</button>
-        <button className={styles.historyy}>History (203)</button>
-        <button className={styles.addButton} onClick={handleAddNewClick}>Add New</button>
-      </div>
-
-      {showNewOrderForm && (
-        <div className={styles.popup}>
-          <div className={styles.popupContent}>
-            <h2>Add New Order</h2>
-            <input type="text" name="vendorNumber" placeholder="MR Id" value={newOrder.vendorNumber} onChange={handleNewOrderChange} />
-            <input type="text" name="vendorID" placeholder="MR Name" value={newOrder.vendorID} onChange={handleNewOrderChange} />
-            <select name="vendor" value={newOrder.vendor} onChange={handleNewOrderChange}>
-              <option value="">Select Task Assigned</option>
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-            </select>
-            <input type="text" name="phoneNo" placeholder="Phone No" value={newOrder.phoneNo} onChange={handleNewOrderChange} />
-            <input type="text" name="type" placeholder="MRU Assigned" value={newOrder.type} onChange={handleNewOrderChange} />
-            <input type="text" name="driver" placeholder="Total No of Meter readers" value={newOrder.driver} onChange={handleNewOrderChange} />
-            <input type="text" name="dueTime" placeholder="Last Assigned date" value={newOrder.dueTime} onChange={handleNewOrderChange} />
-            <input type="text" name="createdAt" placeholder="Pending Meter Readers" value={newOrder.createdAt} onChange={handleNewOrderChange} />
-            <button onClick={handleSaveNewOrder}>Save</button>
-            <button onClick={handleCancelNewOrder}>Cancel</button>
-          </div>
-        </div>
-      )}
-
-      {deleteIndex !== null && (
-        <div className={styles.popup}>
-          <div className={styles.popupContent}>
-            <h2>Confirm Delete</h2>
-            <p>Are you sure you want to delete this order?</p>
-            <button onClick={handleConfirmDelete}>Yes</button>
-            <button onClick={handleCancelDelete}>No</button>
-          </div>
-        </div>
-      )}
-
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>MR Id</th>
-            <th>MR Name</th>
-            <th>Task Assigned</th>
-            <th>Phone No</th>
-            <th>MRU Assigned</th>
-            <th>Total No of Meter readers</th>
-            <th>Last Assigned date</th>
-            <th>Pending Meter Readers</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {orders.map((order, index) => (
-            <tr key={index}>
-              <td>{order.vendorNumber}</td>
-              <td>{order.vendorID}</td>
-              <td>
-                {editIndex === index ? (
-                  <select name="vendor" value={editData.vendor} onChange={handleChange}>
-                    <option value="">Select Task Assigned</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                  </select>
-                ) : (
-                  order.vendor
-                )}
-              </td>
-              <td>{order.phoneNo}</td>
-              <td>
-                {editIndex === index ? (
-                  <input type="text" name="type" value={editData.type} onChange={handleChange} />
-                ) : (
-                  order.type
-                )}
-              </td>
-              <td>
-                {editIndex === index ? (
-                  <input type="text" name="driver" value={editData.driver} onChange={handleChange} />
-                ) : (
-                  order.driver || 'Not Assigned'
-                )}
-              </td>
-              <td>
-                {editIndex === index ? (
-                  <input type="text" name="dueTime" value={editData.dueTime} onChange={handleChange} />
-                ) : (
-                  order.dueTime
-                )}
-              </td>
-              <td>
-                {editIndex === index ? (
-                  <input type="text" name="createdAt" value={editData.createdAt} onChange={handleChange} />
-                ) : (
-                  order.createdAt
-                )}
-              </td>
-              <td>
-                {editIndex === index ? (
-                  <>
-                    <button onClick={() => handleSaveClick(index)}>Update</button><br></br><br></br>
-                    <button onClick={handleCancelClick}>Cancel</button>
-                  </>
-                ) : (
-                  <>
-                    <button onClick={() => handleEditClick(index)}>Edit</button><br></br><br></br>
-                    <button onClick={() => handleDeleteClick(index)}>Delete</button>
-                  </>
-                )}
-              </td>
+        {/* Data Table Section */}
+        <table className="table-auto w-full text-left border-collapse mt-6 px-4">
+          <thead>
+            <tr>
+              <th className="px-6 py-3 bg-blue-950 text-white text-lg">PO Number</th>
+              <th className="px-6 py-3 bg-blue-950 text-white text-lg">No of MRU</th>
+              <th className="px-6 py-3 bg-blue-950 text-white text-lg">Meter Reading Cnt</th>
+              <th className="px-6 py-3 bg-blue-950 text-white text-lg">Vendor Assigned</th>
+              <th className="px-6 py-3 bg-blue-950 text-white text-lg">Vendor Username</th>
+              <th className="px-6 py-3 bg-blue-950 text-white text-lg">Status</th>
+              <th className="px-6 py-3 bg-blue-950 text-white text-lg">Valid From</th>
+              <th className="px-6 py-3 bg-blue-950 text-white text-lg">Delivery due on</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {vendorData.length === 0 ? (
+              <tr>
+                <td colSpan="7" className="text-center py-4">
+                  No data available
+                </td>
+              </tr>
+            ) : (
+              vendorData.map((vendor, index) => (
+                <tr key={index} className={index % 2 === 0 ? 'bg-gray-200' : ''}>
+                  <td className="text-black px-6 py-4 border text-center">{vendor.Ebeln}</td>
+                  <td className="text-black px-6 py-4 border">{vendor.NoOfMru}</td>
+                  <td className="text-black px-6 py-4 border">{vendor.MeterReadinCnt}</td>
+                  <td className="text-black px-6 py-4 border">{vendor.VendorAssigned}</td>
+                  <td className="text-black px-6 py-4 border">{vendor.VendorUsernme}</td>
+                  <td className="text-black px-6 py-4 border">{vendor.Status}</td>
+                  <td className="text-black px-6 py-4 border">{vendor.ValidFrom}</td>
+                  <td className="text-black px-6 py-4 border">{formatDate(vendor.DueDate)}</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
 
-export default Page;
+export default TablePage;
